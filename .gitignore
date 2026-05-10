@@ -1,0 +1,25 @@
+# Virtual environment
+.venv/
+venv/
+
+# Python cache
+__pycache__/
+*.py[cod]
+
+# Output files (generated at runtime)
+output/
+
+# IDE
+.idea/
+.vscode/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Hugging Face cache
+.cache/
+
+# Output files (keep folder, ignore contents)
+output/*
+!output/.gitkeep
