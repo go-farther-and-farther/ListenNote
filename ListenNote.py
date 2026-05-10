@@ -14,7 +14,7 @@ import pyaudiowpatch as pyaudio
 
 # ========== 配置 ==========
 OUTPUT_FILE = "captions.txt"
-CHUNK_SECONDS = 15          # 每几秒识别一次（越短越实时，越长越准）
+CHUNK_SECONDS = 5           # 每几秒识别一次（越短越实时，越长越准）
 MODEL_SIZE = "medium"       # tiny/base/small/medium/large-v3
                             # medium 中文效果好，tiny 最快
 DEVICE = "cpu"              # cpu / cuda(N卡加速)
@@ -212,6 +212,7 @@ def main():
                     vad_parameters=dict(
                         min_silence_duration_ms=300
                     ),
+                    initial_prompt="以下是普通话的句子，使用简体中文输出。",
                 )
 
                 # 5. 输出结果
