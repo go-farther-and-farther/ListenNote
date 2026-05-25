@@ -9,6 +9,9 @@ __pycache__/
 # Output files (generated at runtime)
 output/
 
+# User config
+config.json
+
 # IDE
 .idea/
 .vscode/
@@ -20,6 +23,9 @@ Thumbs.db
 # Hugging Face cache
 .cache/
 
-# Output files (keep folder, ignore contents)
+# Input/Output folders (keep folders, ignore contents)
+input/*
+!input/.gitkeep
 output/*
 !output/.gitkeep
+*.16k.wav
