@@ -323,6 +323,7 @@ def transcribe_funasr(model, wav_path):
     workers = min(len(chunks), 4)
     print(f"    分 {len(chunks)} 段, {workers} 线程并行识别...")
     results_map = {}
+    done_count = 0
 
     with ThreadPoolExecutor(max_workers=workers) as executor:
         futures = {executor.submit(_recognize_chunk, model, chunk): idx
@@ -330,6 +331,10 @@ def transcribe_funasr(model, wav_path):
         for future in as_completed(futures):
             idx = futures[future]
             results_map[idx] = future.result()
+            done_count += 1
+            print(f"\r    进度: {done_count}/{len(chunks)}", end="", flush=True)
+
+    print()  # 换行
 
     # 按顺序拼接结果
     texts = []
