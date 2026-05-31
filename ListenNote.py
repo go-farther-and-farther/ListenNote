@@ -303,6 +303,12 @@ def transcribe_funasr(model, wav_path):
         return []
 
     # 读取所有分段（内存可控：每分钟 16kHz float32 ≈ 3.8MB）
+    target_sr = 16000
+    need_resample = sr != target_sr
+    if need_resample:
+        import torch
+        import torchaudio.functional as F
+
     chunk_seconds = 60
     chunk_samples = sr * chunk_seconds
     total_frames = info.frames
@@ -317,6 +323,8 @@ def transcribe_funasr(model, wav_path):
         chunk, _ = sf.read(wav_path, dtype="float32", start=start, frames=frames)
         if chunk.ndim > 1:
             chunk = chunk[:, 0]
+        if need_resample:
+            chunk = F.resample(torch.from_numpy(chunk), sr, target_sr).numpy()
         chunks.append((i, chunk))
 
     # 并行识别（ONNX 推理释放 GIL，线程可真正并行）
