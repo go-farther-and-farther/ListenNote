@@ -29,3 +29,7 @@ input/*
 output/*
 !output/.gitkeep
 *.16k.wav
+
+# Local tooling artifacts and manual backups
+.codewhale/
+*.bak-*

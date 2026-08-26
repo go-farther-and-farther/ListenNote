@@ -1,3 +1,11 @@
 faster-whisper
 pyaudiowpatch
 numpy
+
+# FunASR 后端(paraformer/sensevoice,默认 paraformer)
+funasr
+modelscope
+torch
+torchaudio
+onnxruntime
+soundfile

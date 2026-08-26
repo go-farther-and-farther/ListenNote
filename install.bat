@@ -30,6 +30,6 @@ if %errorlevel% neq 0 (
 )
 echo.
 echo ========================================
-echo   Done! Double-click run.bat to start
+echo   Done! Double-click run-record.bat to start
 echo ========================================
 pause
